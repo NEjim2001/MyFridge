@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "66b33886-b3cd-49fe-b80d-59133755b587"
+      }
+    },
+    "owner": "nejim2001"
   }
 }
