@@ -19,6 +19,7 @@ import { ingredientsRef } from "../config/firebase.js";
 import { scale, verticalScale, moderateScale } from "react-native-size-matters";
 import { PlusIcon } from "react-native-heroicons/solid";
 import EmptyList from "../components/EmptyList.js";
+import LoadingList from "../components/LoadingList.js";
 
 export default function MyFridgeScreen() {
   const navigation = useNavigation();
@@ -220,10 +221,14 @@ export default function MyFridgeScreen() {
           {renderData ? (
             <FlatList
               data={itemsToRender}
-              ListEmptyComponent={EmptyList(
-                "Fetching Ingredients",
-                "You can the plus button to add ingredients!"
-              )}
+              ListEmptyComponent={
+                loading
+                  ? LoadingList("Fetching Ingredients")
+                  : EmptyList(
+                      "No Ingredients",
+                      "Make sure to add your ingredients! (Refresh to Update)"
+                    )
+              }
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => {
                 return (

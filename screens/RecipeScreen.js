@@ -28,7 +28,7 @@ export default function RecipeScreen() {
   const isFocused = useIsFocused();
 
   const [switchToggle, setSwitchToggle] = useState(1);
-  const [ingredientsList, setIngredientList] = useState([]);
+  const [ingredientsList, setIngredientList] = useState("");
 
   const [recipes, setRecipes] = useState([]);
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);

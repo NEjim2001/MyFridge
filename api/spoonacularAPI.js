@@ -4,7 +4,7 @@ import { APIKEY } from "../constants";
 const spoonacularURLRecipes = "https://api.spoonacular.com/recipes";
 const spoonacularURLFood = "https://api.spoonacular.com/food";
 
-const NUMBER_OF_RECIPES = 7;
+const NUMBER_OF_RECIPES = 10;
 
 export const fetchBulkRecipeInfoByID = async (recipeIds) => {
   try {
