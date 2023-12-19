@@ -34,19 +34,15 @@ If development were to continue, the following improvements would be considered:
 - **Shopping List:** Built-in notepad to keep track of groceries
 ## Available Scripts
 
-install dev dependencies
+Install dev dependencies
 
-### `npm install` or `yarn install`
+### `npm install`
 
-## Then
-
-Run The app
-
+Run App
 ### `npm start`
 
-Runs your app in development mode.
-
+Run iPhone Simulator (Must have MacBook and [XCode](https://apps.apple.com/us/app/xcode/id497799835?mt=12) downloaded)
 #### `npm run ios`
 
-Like `npm start` / `yarn start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed.
+Like `npm start`, but also attempts to open your app in the iOS Simulator if you're on a Mac and have it installed.
 
