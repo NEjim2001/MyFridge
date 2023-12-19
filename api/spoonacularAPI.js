@@ -28,6 +28,31 @@ export const fetchBulkRecipeInfoByID = async (recipeIds) => {
   }
 };
 
+export const fetchRecipesByIngredients = async (ingredients) => {
+  try {
+    let resp = await axios.get(spoonacularURLRecipes + "/findByIngredients", {
+      params: {
+        apiKey: APIKEY,
+        ingredients: ingredients,
+        number: 10,
+        limitLicense: true,
+        ranking: 1,
+        ignorePantry: true,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    let data = resp.data;
+    cl;
+    return data;
+  } catch (e) {
+    console.log("Error: ", e);
+    return { success: false, msg: e.message };
+  }
+};
+
 export const fetchIngredientsByName = async (name) => {
   try {
     let resp = await axios.get(spoonacularURLFood + "/ingredients/search", {

@@ -1,8 +1,8 @@
-export const APIKEY = ["Enter Spoonacular API key here"]; // https://spoonacular.com/food-api
+export const APIKEY = "b6f0e3f0160b40a49b66f75d55608570"; // https://spoonacular.com/food-api
 
 export const dummyText =
   "Lorem ipsum dolor sit amet, consectetuer adipiscing eli Aliquam tincidunt mauris eu risus Vestibulum auctor dapibus neque. Nunc dignissim risus id metus. Cras ornare tristique elit. Vivamus vestibulum ntulla nec ante. Praesent placerat risus quis eros. Fusce pellentesque suscipit nibh. Integer vitae libero ac risus egestas placerat Vestibulum commodo felis quis tortor. Ut aliquam sollicitudin leo. Cras iaculis ultricies nulla. Donec quis dui at dolor tempor interdum.";
-
+``;
 export const dummySteps = [
   {
     equipment: [],

@@ -10,7 +10,10 @@ import React, { useEffect, useMemo, useState } from "react";
 import ScreenWrapper from "../components/ScreenWrapper";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { colors } from "../theme/index.js";
-import { fetchBulkRecipeInfoByID } from "../api/spoonacularAPI";
+import {
+  fetchBulkRecipeInfoByID,
+  fetchRecipesByIngredients,
+} from "../api/spoonacularAPI";
 import { getDocs, query, where } from "firebase/firestore";
 import { useSelector } from "react-redux";
 import { favoritesRef, ingredientsRef } from "../config/firebase.js";
@@ -45,8 +48,10 @@ export default function RecipeScreen() {
 
   const fetchRecipes = async () => {
     try {
-      const response = await fetchBulkRecipeInfoByID(ingredientsList);
-      setRecipes(response);
+      const response = await fetchRecipesByIngredients(ingredientsList);
+      const recipeIDs = response.map((item) => item.id).join(",");
+      const results = await fetchBulkRecipeInfoByID(recipeIDs);
+      setRecipes(results);
     } catch (error) {
       console.error("Error fetching recipe bulk: ", error);
     }
@@ -60,8 +65,13 @@ export default function RecipeScreen() {
   const fetchFavorites = async () => {
     try {
       const querySnapshot = await getDocs(
-        query(favoritesRef, where("favorite", "==", true))
+        query(
+          favoritesRef,
+          where("favorite", "==", true),
+          where("userID", "==", user)
+        )
       );
+
       const recipeIDs = querySnapshot.docs.map((doc) => doc.data().recipeID);
       setFavoriteRecipes(await fetchBulkRecipeInfoByID(recipeIDs.join(",")));
     } catch (error) {
@@ -79,7 +89,7 @@ export default function RecipeScreen() {
       querySnapshot.forEach((doc) => {
         data.push(doc.data());
       });
-      const results = data.map((item) => item.itemID).join(",");
+      const results = data.map((item) => item.name).join(",");
       setIngredientList(results); // Ingredient List
       setIsRefreshing(false);
     } catch (error) {
@@ -154,7 +164,6 @@ export default function RecipeScreen() {
               refreshing={isRefreshing}
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => {
-                const rndInt = Math.floor(Math.random() * 2) + 1;
                 return (
                   <TouchableOpacity
                     className='mb-5'
@@ -168,7 +177,7 @@ export default function RecipeScreen() {
                     <View className='space-y-2 items-center'>
                       <Image
                         style={{
-                          height: rndInt == 1 ? 150 : 250,
+                          height: 250,
                           width: moderateScale(160),
                         }}
                         className='rounded-3xl '
