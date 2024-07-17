@@ -1,5 +1,7 @@
 import axios from "axios";
-import { APIKEY } from "../constants";
+import { SPOONCULAR_API_KEY } from "@env";
+
+const APIKEY = SPOONCULAR_API_KEY;
 
 const spoonacularURLRecipes = "https://api.spoonacular.com/recipes";
 const spoonacularURLFood = "https://api.spoonacular.com/food";
